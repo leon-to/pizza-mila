@@ -4,7 +4,13 @@ import React from 'react';
 
 class ProductList extends React.Component {
     render() {
-        return <h1>{this.props.products}</h1>;
+        return (
+            <div>
+                {this.props.products.map(product =>
+                    <Product name={product.name} price={product.price} img={product.img}/>
+                )}
+            </div>
+        );
     }
 }
 
