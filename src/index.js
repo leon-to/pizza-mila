@@ -9,7 +9,7 @@ ReactDOM.render(
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>,
-  <Product name="Hotdog Pizza" price="$9.99"/>,
+  <Product name="Hotdog Pizza" price="$9.99" img="/img/hotdog-pizza.jpg"/>,
   document.getElementById('root')
 );
 
