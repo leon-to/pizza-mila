@@ -1,26 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
+import ProductList from './product/ProductList';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+class App extends React.Component {
+  // var l = [
+  //   new Product('Hotdog Pizza', 'n/a'),
+  //   new Product('Garlic Pizza', 'n/a')
+  // ];
+  // l[0] = new Product('Hotdog Pizza', 'n/a');
+  render(){
+    return <ProductList products="['a', 'b']"></ProductList>;
+  }
 }
 
 export default App;
