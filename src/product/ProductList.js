@@ -1,13 +1,13 @@
 import Product from './Product';
 import React from 'react';
-
+import './ProductList.css';
 
 class ProductList extends React.Component {
     render() {
         return (
-            <div>
+            <div className="ProductList">
                 {this.props.products.map(product =>
-                    <Product name={product.name} price={product.price} img={product.img}/>
+                    <Product product={product}/>
                 )}
             </div>
         );
