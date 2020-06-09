@@ -1,20 +1,26 @@
 .header {
     width: 800px;
-    height: 100px;
+    height: 80px;
     
     display: flex;
     flex-wrap: nowrap;
-}
 
-.logo {
-    width: auto;
-    height: 100%;
 }
 
 .nav {
     display: flex;
 }
 
-.nav-home {
-    height: 100%;
+.nav-home, .nav-news {
+    width: fit-content;
+    height: fit-content;
+
+    margin: auto 10px;
+}
+
+.login{
+    width: fit-content;
+    height: fit-content;
+    align-self: flex-end;
+    margin: auto 10px;
 }
