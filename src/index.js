@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Product from './product/Product';
-import ProductList from './product/ProductList';
+import App from './app/App';
 import * as serviceWorker from './serviceWorker';
 
 const products = [
