@@ -5,7 +5,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import {Nav, Navbar} from 'react-bootstrap';
+import {Nav, Navbar, Form, FormControl, Button} from 'react-bootstrap';
 
 import './Router.css';
 import Home from '../../home/Home';
@@ -20,11 +20,16 @@ export default class Router extends React.Component{
             //     <div className="nav-news">News</div>
             //     <div className="nav-login">Login</div>
             // </div>
-            <Navbar bg="light" expand="light">
+            <Navbar bg="dark" variant='dark'>
               <Navbar.Brand href="#home">PIZZA MILA</Navbar.Brand>
               <Nav className="mr-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
+                
               </Nav>
+              <Form inline>
+                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                <Button variant="outline-info">Search</Button>
+              </Form>
             </Navbar>
         );
             
