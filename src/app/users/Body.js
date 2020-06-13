@@ -1,6 +1,6 @@
 import React from 'react';
 import './Body.css';
-import ProductList from '../product/ProductList';
+import ProductList from '../home/product/ProductList';
 
 class Body extends React.Component{
     render(){

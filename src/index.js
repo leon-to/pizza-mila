@@ -20,6 +20,7 @@ ReactDOM.render(
   // <Product name="Hotdog Pizza" price="$9.99" img="/img/hotdog-pizza.jpg"/>,
   // <ProductList products={products} />,
   <App />,
+  // <Login />,
   document.getElementById('root')
 );
 

@@ -8,23 +8,17 @@ import {
 import {Nav, Navbar, Form, FormControl, Button} from 'react-bootstrap';
 
 import './Router.css';
-import Home from '../../home/Home';
-
+import Home from '../home/Home';
+import Login from '../login/Login';
 
 export default class Router extends React.Component{
     render(){
         const nav = (
-            // <div className="nav">
-            //     <img className="nav-logo" src="img/pizza-mila-logo.jpg"/>
-            //     <Link to="/" className="nav-home">Home</Link>
-            //     <div className="nav-news">News</div>
-            //     <div className="nav-login">Login</div>
-            // </div>
             <Navbar bg="dark" variant='dark'>
               <Navbar.Brand href="#home">PIZZA MILA</Navbar.Brand>
               <Nav className="mr-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href='/login'>Login</Nav.Link>
               </Nav>
               <Form inline>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -35,10 +29,12 @@ export default class Router extends React.Component{
             
         const swit = (
             <Switch>
+              <Route path="/login">
+                <Login />
+              </Route>
               <Route path="/">
                 <Home />
               </Route>
-      
             </Switch>
           );
       
