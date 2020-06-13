@@ -1,15 +1,11 @@
 import React from 'react';
-import {
-    BrowserRouter,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import {BrowserRouter,Switch,Route,Link} from "react-router-dom";
 import {Nav, Navbar, Form, FormControl, Button} from 'react-bootstrap';
 
 import './Router.css';
 import Home from '../home/Home';
 import Login from '../login/Login';
+import SignUp from '../signup/SignUp';
 
 export default class Router extends React.Component{
     render(){
@@ -19,6 +15,7 @@ export default class Router extends React.Component{
               <Nav className="mr-auto">
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href='/login'>Login</Nav.Link>
+                <Nav.Link href='/signup'>Sign Up</Nav.Link>
               </Nav>
               <Form inline>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -31,6 +28,9 @@ export default class Router extends React.Component{
             <Switch>
               <Route path="/login">
                 <Login />
+              </Route>
+              <Route path='/signup'>
+                <SignUp />
               </Route>
               <Route path="/">
                 <Home />

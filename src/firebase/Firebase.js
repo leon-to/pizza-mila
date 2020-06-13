@@ -1,4 +1,6 @@
 import app from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
 
 //TODO: move to env variables
 const firebase_config = {
@@ -15,7 +17,10 @@ const firebase_config = {
 export default class Firebase{
     constructor(){
         app.initializeApp(firebase_config);
-        this.auth = app.auth;
+        this.auth = app.auth();
     }
+
+    doCreateUserWithEmailAndPassword = (email, password) =>
+        this.auth.createUserWithEmailAndPassword(email, password);
 }
 
