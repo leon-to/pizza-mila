@@ -1,33 +1,71 @@
 import React from 'react';
 import {Form, Button} from 'react-bootstrap';
-import {FirebaseContext, Firebase} from '../../firebase';
+import {withFirebaseContext} from '../../firebase';
 
-export default class Login extends React.Component{
+class Login extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {validated: false, email: '', password: ''};
+
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onChange(event){
+        this.setState({[event.target.name]: event.target.value});
+        // console.log(event.target.name, event.target.value)
+    }
+
+    onSubmit(event){
+        // prevent submit reload
+        event.preventDefault();
+
+        // turn on validation
+        this.setState({validated: true});
+        
+        // submit if good validation
+        const form = event.target;
+        const {email, password} = this.state;
+        if (form.checkValidity()){
+            this.props.firebase
+                .doSignInWithEmailAndPassword(email, password);
+        }
+    }
+
     render(){
         const login = (
-            <FirebaseContext.Consumer>
-                {firebase => (
-                    <Form>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" />
-                        </Form.Group>
+            <div>
+                <h2>Log in</h2>
+                <Form noValidate validated={this.state.validated} onChange={this.onChange} onSubmit={this.onSubmit} >
+                    <Form.Group>
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control
+                            name="email"
+                            type="email" 
+                            placeholder="Enter email"/>
+                        <Form.Control.Feedback type='invalid'>
+                            Please enter a valid email
+                        </Form.Control.Feedback>
+                    </Form.Group>
 
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Show password" />
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                )}
-            </FirebaseContext.Consumer>
+            
+                    <Form.Group>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control 
+                            name="password"
+                            type="password" 
+                            placeholder="Password"/>
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+            </div>
         );
 
         return login;
     }
 }
+
+export default withFirebaseContext(Login);

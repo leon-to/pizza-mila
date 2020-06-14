@@ -23,8 +23,7 @@ export default class Firebase{
     doCreateUserWithEmailAndPassword = (email, password) =>
         this.auth.createUserWithEmailAndPassword(email, password);
 
-    check(){
-        console.log('hello, firebase');
-    }
+    doSignInWithEmailAndPassword = (email, password) =>
+        this.auth.signInWithEmailAndPassword(email, password);
 }
 

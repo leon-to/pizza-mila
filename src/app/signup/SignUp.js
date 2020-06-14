@@ -5,7 +5,7 @@ import { withFirebaseContext, FirebaseContext } from '../../firebase';
 class SignUp extends React.Component{
     constructor(props){
         super(props);
-        this.state = {email: '', password: ''};
+        this.state = {email: '', password: '', validated: false};
         
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -18,18 +18,27 @@ class SignUp extends React.Component{
     }
 
     onSubmit(event){
+        //prevent submit reload
+        event.preventDefault();
+        
+        //turn on form validation
+        this.setState({validated: true});
+        
+        //submit if "good" validation
+        const form = event.currentTarget;
         const {email, password} = this.state;
-        this.props.firebase
-            .doCreateUserWithEmailAndPassword(email, password)
-            .catch(error => {this.setState({error})});
-        // console.log('onSubmit');
+        if (form.checkValidity()){
+            this.props.firebase
+                .doCreateUserWithEmailAndPassword(email, password)
+                .catch(error => {this.setState({error})})
+        }
     }
 
     render(){
         return (
             <div>
                 <h2>Sign Up</h2>
-                <Form>
+                <Form noValidate validated={this.state.validated} onSubmit={this.onSubmit}>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control 
@@ -37,7 +46,9 @@ class SignUp extends React.Component{
                             type="email" 
                             placeholder="Enter email" 
                             onChange={this.onChange}/>
-                            {/* ></Form.Control> */}
+                        <Form.Control.Feedback type="invalid">
+                            Please enter a valid email
+                        </Form.Control.Feedback>
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword">
@@ -47,22 +58,16 @@ class SignUp extends React.Component{
                             type="password" 
                             placeholder="Password"
                             onChange={this.onChange}/>
-                            {/* ></Form.Control> */}
                     </Form.Group>
-                    <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Show password" />
-                    </Form.Group>
+
                     <Button 
                         variant="primary" 
-                        type="button" 
-                        onClick={this.onSubmit}>
+                        type="submit" >
                         
                         Submit
                     </Button>
                 </Form>
             </div>
-               
-            
         );
     }
 }
