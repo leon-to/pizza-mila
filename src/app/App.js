@@ -7,10 +7,8 @@ import {withFirebaseContext} from '../firebase';
 import './App.css';
 
 import Home from './home/Home';
-
-import Login from './user/login/Login';
-import SignUp from './user/signup/SignUp';
-import User from './user/User';
+import Contact from './contact/Contact';
+import {Login, SignUp, Profile} from './user';
 
 
 class App extends React.Component {
@@ -41,14 +39,13 @@ class App extends React.Component {
           <Navbar.Brand href="#home">PIZZA MILA</Navbar.Brand>
           <Nav className="mr-auto">
             <Nav.Link as={Link} to='/home'>Home</Nav.Link>
-            <Nav.Link as={Link} to='/signup'>Sign Up</Nav.Link>
-            <Nav.Link as={Link} to='/user'>User</Nav.Link>
+            <Nav.Link as={Link} to='/contact'>Contact</Nav.Link>
           </Nav>
           
           
           {user ?
             <DropdownButton title={user.email}>
-              <Dropdown.Item>Your profile</Dropdown.Item>
+              <Dropdown.Item as={Link} to='/profile'>Your profile</Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item onClick={this.onSignOut}>Sign out</Dropdown.Item>
             </DropdownButton>
@@ -64,7 +61,8 @@ class App extends React.Component {
         <Switch>
           <Route path="/login"><Login /></Route>
           <Route path='/signup'><SignUp /></Route>
-          <Route path='/user'><User /></Route>
+          <Route path='/profile'><Profile /></Route>
+          <Route path='/contact'><Contact /></Route>
           <Route path="/"><Home /></Route>
       </Switch>
       </BrowserRouter>
