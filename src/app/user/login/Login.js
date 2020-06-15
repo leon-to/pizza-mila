@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {Form, Button} from 'react-bootstrap';
 import {compose} from 'recompose';
-import {withFirebaseContext} from '../../firebase';
+import {withFirebaseContext} from '../../../firebase';
 
 class Login extends React.Component{
     constructor(props){
@@ -30,7 +30,7 @@ class Login extends React.Component{
         const {email, password} = this.state;
         if (form.checkValidity()){
             this.props.firebase
-                .doSignInWithEmailAndPassword(email, password);
+                .signInWithEmailAndPassword(email, password);
                 // .then(() =>{
                 //     // this.props.history
                 // });

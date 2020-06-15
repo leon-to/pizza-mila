@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Form, Button, Container} from 'react-bootstrap';
-import { withFirebaseContext, FirebaseContext } from '../../firebase';
+import { withFirebaseContext, FirebaseContext } from '../../../firebase';
 
 class SignUp extends React.Component{
     constructor(props){
@@ -29,7 +29,7 @@ class SignUp extends React.Component{
         const {email, password} = this.state;
         if (form.checkValidity()){
             this.props.firebase
-                .doCreateUserWithEmailAndPassword(email, password)
+                .createUserWithEmailAndPassword(email, password)
                 .catch(error => {this.setState({error})})
         }
     }
