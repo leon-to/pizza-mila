@@ -1,5 +1,7 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import {Form, Button} from 'react-bootstrap';
+import {compose} from 'recompose';
 import {withFirebaseContext} from '../../firebase';
 
 class Login extends React.Component{
@@ -29,7 +31,12 @@ class Login extends React.Component{
         if (form.checkValidity()){
             this.props.firebase
                 .doSignInWithEmailAndPassword(email, password);
+                // .then(() =>{
+                //     // this.props.history
+                // });
+
         }
+        this.props.history.push('/');
     }
 
     render(){
@@ -68,4 +75,5 @@ class Login extends React.Component{
     }
 }
 
-export default withFirebaseContext(Login);
+// export default withFirebaseContext(Login);
+export default compose(withRouter, withFirebaseContext)(Login);
